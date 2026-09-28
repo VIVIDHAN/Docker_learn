@@ -1,14 +1,30 @@
-name: Deploy to AWS EC2
+name: Test and Deploy to AWS EC2
 
 on:
   push:
     branches:
-      - main # This tells GitHub to run this script ONLY when you push to the 'main' branch
+      - main
 
 jobs:
+  # JOB 1: THE TESTING PHASE
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+        
+      - name: Validate HTML Syntax
+        run: echo "Pretending to run an HTML Linter here... looks good!"
+        
+      - name: Test Docker Build
+        # This tries to build the image inside GitHub's temporary server.
+        # If your Dockerfile has a typo, this step fails, and it NEVER reaches your real server!
+        run: docker build -t test-website-build .
+
+  # JOB 2: THE DEPLOYMENT PHASE
   deploy:
-    runs-on: ubuntu-latest # GitHub creates a temporary Linux server to run these tasks
-    
+    needs: test  # <--- THIS IS THE MAGIC LINE. It tells GitHub to wait for 'test' to finish successfully.
+    runs-on: ubuntu-latest
     steps:
       - name: SSH into EC2 and Deploy
         uses: appleboy/ssh-action@master
@@ -18,15 +34,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd ~/Docker_learn
-            
-            # 1. Get the latest code from GitHub
             git pull origin main
-            
-            # 2. Build the new Docker image
             sudo docker build -t my-live-website .
-            
-            # 3. Kill the old container (the || true prevents errors if it doesn't exist yet)
             sudo docker rm -f production-web || true
-            
-            # 4. Start the new container
             sudo docker run -d -p 80:80 --name production-web my-live-website
