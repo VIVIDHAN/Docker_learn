@@ -1,3 +1,4 @@
 FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-EXPOSE 80
+# Copy all HTML and CSS files into the Nginx web directory
+COPY *.html /usr/share/nginx/html/
+COPY *.css /usr/share/nginx/html/
