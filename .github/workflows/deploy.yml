@@ -32,18 +32,13 @@ jobs:
             cd ~/docker/Docker_learn
             git pull origin main
             
-            # 1. Build the new code
             sudo docker build -t my-live-website .
             
-            # 2. Check if the Traefik Load Balancer is running. If not, start it.
             if ! sudo docker ps | grep -q traefik; then
-              # Kill the old manual container holding port 80
               sudo docker rm -f production-web traefik || true
-              # Start Traefik, which will now own port 80 forever
               sudo docker run -d -p 80:80 --name traefik -v /var/run/docker.sock:/var/run/docker.sock traefik:v3.0 --providers.docker=true
             fi
             
-            # 3. Figure out if we are currently running 'blue' or 'green'
             if sudo docker ps | grep -q website-blue; then
               OLD="website-blue"
               NEW="website-green"
@@ -52,11 +47,56 @@ jobs:
               NEW="website-blue"
             fi
             
-            # 4. Start the NEW container in the background (Traefik automatically detects it!)
             sudo docker run -d --name $NEW --label "traefik.http.routers.$NEW.rule=PathPrefix(\`/\`)" my-live-website
             
-            # 5. Wait 3 seconds for the new container to warm up and for Traefik to route traffic to it
             sleep 3
             
-            # 6. Safely destroy the old container. Users won't notice a thing.
             sudo docker rm -f $OLD || true
+
+  # JOB 3: EMAIL NOTIFICATIONS
+  notify:
+    needs: [test, deploy]
+    if: always() # This ensures the email sends even if the test or deploy fails!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Success Email
+        if: ${{ needs.test.result == 'success' && needs.deploy.result == 'success' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "✅ Deployment Successful: Docker_learn"
+          to: ${{ secrets.EMAIL_USERNAME }}
+          from: "Vividhan CI/CD Bot"
+          html_body: |
+            <div style="font-family: Arial, sans-serif; padding: 30px; border-radius: 10px; max-width: 600px; margin: 0 auto; text-align: center; background-color: #f9f9f9; border: 1px solid #e0e0e0;">
+              <h1 style="color: #2ecc71; margin-bottom: 5px;">🚀 Deployment Successful!</h1>
+              <p style="color: #555; font-size: 16px; margin-bottom: 25px;">Great news! Your latest code has been successfully built and deployed to your AWS EC2 server with Zero Downtime.</p>
+              <a href="http://13.235.69.194" style="background-color: #3498db; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">View Live Website</a>
+              <br><br><hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;"><br>
+              <p style="font-size: 12px; color: #aaa;">Automated by GitHub Actions & Docker</p>
+            </div>
+
+      - name: Send Failure Email
+        if: ${{ needs.test.result == 'failure' || needs.deploy.result == 'failure' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "❌ Deployment FAILED: Docker_learn"
+          to: ${{ secrets.EMAIL_USERNAME }}
+          from: "Vividhan CI/CD Bot"
+          html_body: |
+            <div style="font-family: Arial, sans-serif; padding: 30px; border-radius: 10px; max-width: 600px; margin: 0 auto; text-align: center; background-color: #fdf2f2; border: 1px solid #f5c6cb; border-top: 5px solid #e74c3c;">
+              <h1 style="color: #e74c3c; margin-bottom: 5px;">⚠️ Deployment Failed</h1>
+              <p style="color: #555; font-size: 16px; margin-bottom: 25px;">Oh no! Something went wrong during the build or deployment process. <b>Your live website is safe and has not been changed.</b></p>
+              <a href="https://github.com/VIVIDHAN/Docker_learn/actions" style="background-color: #e74c3c; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Check Error Logs</a>
+              <br><br><hr style="border: none; border-top: 1px solid #f5c6cb; margin: 20px 0;"><br>
+              <p style="font-size: 12px; color: #aaa;">Automated by GitHub Actions & Docker</p>
+            </div>
