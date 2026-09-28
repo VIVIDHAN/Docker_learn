@@ -22,7 +22,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: SSH into EC2 and Deploy
+      - name: SSH into EC2 and Deploy with ZERO DOWNTIME
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -31,6 +31,32 @@ jobs:
           script: |
             cd ~/docker/Docker_learn
             git pull origin main
+            
+            # 1. Build the new code
             sudo docker build -t my-live-website .
-            sudo docker rm -f production-web || true
-            sudo docker run -d -p 80:80 --name production-web my-live-website
+            
+            # 2. Check if the Traefik Load Balancer is running. If not, start it.
+            if ! sudo docker ps | grep -q traefik; then
+              # Kill the old manual container holding port 80
+              sudo docker rm -f production-web traefik || true
+              # Start Traefik, which will now own port 80 forever
+              sudo docker run -d -p 80:80 --name traefik -v /var/run/docker.sock:/var/run/docker.sock traefik:v3.0 --providers.docker=true
+            fi
+            
+            # 3. Figure out if we are currently running 'blue' or 'green'
+            if sudo docker ps | grep -q website-blue; then
+              OLD="website-blue"
+              NEW="website-green"
+            else
+              OLD="website-green"
+              NEW="website-blue"
+            fi
+            
+            # 4. Start the NEW container in the background (Traefik automatically detects it!)
+            sudo docker run -d --name $NEW --label "traefik.http.routers.$NEW.rule=PathPrefix(\`/\`)" my-live-website
+            
+            # 5. Wait 3 seconds for the new container to warm up and for Traefik to route traffic to it
+            sleep 3
+            
+            # 6. Safely destroy the old container. Users won't notice a thing.
+            sudo docker rm -f $OLD || true
