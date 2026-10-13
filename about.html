@@ -3,27 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - DevOps Master</title>
+
+    <meta name="theme-color" content="#080d1b">
+    <meta name="description" content="About Vividhan Tech — Cloud Architecture, Docker Containerization, and DevOps Engineering.">
+
+    <title>About | Vividhan Tech</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav>
-        <div class="logo">Vividhan Tech 🚀</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
 
-    <div class="container">
-        <h1>About The Architecture 🏗️</h1>
-        <p>This website is running inside an isolated Linux environment called an <span class="highlight">Alpine Nginx Container</span>.</p>
-        <p>Because it is containerized, this exact same website can be moved to Google Cloud, Microsoft Azure, or a local Raspberry Pi without changing a single line of code. That is the true power of Docker.</p>
-    </div>
+    <div class="background-glow"></div>
 
-    <footer>
-        <p>Deployed seamlessly via GitHub Actions &copy; 2026</p>
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">&lt;/&gt;</span>
+            <span>Vividhan<span class="brand-accent">Tech</span></span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <a href="contact.html" class="nav-cta">
+            Get in Touch <span>↗</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header section-container">
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                SYSTEM ARCHITECTURE & PHILOSOPHY
+            </div>
+
+            <h1>About The <span class="gradient-text">Architecture 🏗️</span></h1>
+
+            <p>
+                Engineered for speed, resilience, and portability. Designed with modern DevOps practices to turn code into high-performance cloud applications.
+            </p>
+        </section>
+
+        <!-- ABOUT CONTENT SECTION -->
+        <section class="about-section section-container">
+            <div class="about-grid">
+
+                <!-- MAIN DESCRIPTION CARD -->
+                <div class="content-card">
+                    <h2>Containerized with Alpine Nginx</h2>
+                    <p>
+                        This entire web application runs inside an ultra-lightweight, isolated Linux environment powered by an <strong>Alpine Nginx Container</strong>. By stripping away unnecessary bloat, the container image remains under 25MB while serving web assets with lightning efficiency.
+                    </p>
+                    <p>
+                        Because it is 100% containerized, this exact same workload can seamlessly migrate across AWS EC2, Google Cloud Platform, Microsoft Azure, or a bare-metal server without changing a single line of application code. That is the true power of Docker.
+                    </p>
+
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">AUTOMATED CI/CD</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">&lt;25MB</div>
+                            <div class="stat-label">CONTAINER FOOTPRINT</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">0s</div>
+                            <div class="stat-label">DEPLOYMENT DOWNTIME</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">UPTIME TARGET</div>
+                        </div>
+                    </div>
+
+                    <div class="skills-wrapper">
+                        <div class="skills-title">CORE ENGINEERING STACK</div>
+                        <div class="skills-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS EC2</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Nginx</span>
+                            <span class="skill-tag">Linux / Bash</span>
+                            <span class="skill-tag">CI/CD Pipelines</span>
+                            <span class="skill-tag">Traefik</span>
+                            <span class="skill-tag">Git Version Control</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TERMINAL / CODE CARD -->
+                <div class="terminal-card" style="max-width: 100%;">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="terminal-title">docker-inspect.log</span>
+                        <span class="terminal-label">DOCKER</span>
+                    </div>
+
+                    <div class="terminal-body">
+                        <div class="terminal-comment">
+                            # Inspecting production container state
+                        </div>
+
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span>docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"</span>
+                        </div>
+
+                        <div class="terminal-output">
+                            NAMES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PORTS<br>
+                            production-web&nbsp;&nbsp;Up 2 hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.0.0:80->80/tcp
+                        </div>
+
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span>curl -I http://localhost</span>
+                        </div>
+
+                        <div class="terminal-output">
+                            <span class="success-text">HTTP/1.1 200 OK</span><br>
+                            Server: nginx/alpine<br>
+                            Content-Type: text/html
+                        </div>
+
+                        <div class="terminal-divider"></div>
+
+                        <div class="terminal-result">
+                            <span class="result-indicator"></span>
+                            <div>
+                                <strong>Container Status: Healthy</strong>
+                                <p>Running on Amazon Linux / EC2</p>
+                            </div>
+                            <span class="result-tag">ACTIVE</span>
+                        </div>
+                    </div>
+
+                    <div class="terminal-footer">
+                        <span>vividhan@aws-ec2</span>
+                        <span>Alpine 3.19</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section section-container">
+            <div class="cta-card">
+                <div class="cta-decoration"></div>
+                <div class="cta-content">
+                    <div class="eyebrow">READY TO COLLABORATE?</div>
+                    <h2>Have a DevOps or cloud project<br>in <span class="gradient-text">mind?</span></h2>
+                    <p>Let's build scalable, automated, and secure cloud pipelines together.</p>
+                    <div class="hero-actions">
+                        <a href="contact.html" class="button button-primary">
+                            Get in Touch <span>→</span>
+                        </a>
+                        <a href="index.html" class="button button-secondary">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="index.html" class="brand footer-brand">
+                <span class="brand-icon">&lt;/&gt;</span>
+                <span>Vividhan<span class="brand-accent">Tech</span></span>
+            </a>
+            <p>Designed with purpose. Deployed with automation.</p>
+            <span class="copyright">© 2026 Vividhan Tech</span>
+        </div>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("nav-open");
+            menuToggle.classList.toggle("menu-open", isOpen);
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("nav-open");
+                menuToggle.classList.remove("menu-open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    </script>
+
 </body>
 </html>

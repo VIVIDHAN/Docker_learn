@@ -3,32 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - DevOps Master</title>
+
+    <meta name="theme-color" content="#080d1b">
+    <meta name="description" content="Contact Vividhan Tech — Get in touch for DevOps engineering, cloud infrastructure, and software collaborations.">
+
+    <title>Contact | Vividhan Tech</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav>
-        <div class="logo">Vividhan Tech 🚀</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
 
-    <div class="container">
-        <h1>Contact Me ✉️</h1>
-        <p>Looking to hire a DevOps engineer who knows how to automate cloud deployments?</p>
-        <p>You've come to the right place. Send an email to the administrator to get in touch!</p>
-        
-        <div style="margin-top: 2rem; padding: 1rem; background: #e8f4f8; border-left: 4px solid #3498db;">
-            <p><strong>Status:</strong> Available for Hire</p>
-            <p><strong>Skills:</strong> Docker, AWS EC2, GitHub Actions CI/CD</p>
+    <div class="background-glow"></div>
+
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">&lt;/&gt;</span>
+            <span>Vividhan<span class="brand-accent">Tech</span></span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+        </nav>
+
+        <a href="https://github.com/VIVIDHAN" target="_blank" rel="noopener noreferrer" class="nav-cta">
+            GitHub Profile <span>↗</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main>
+
+        <!-- PAGE HEADER -->
+        <section class="page-header section-container">
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                COMMUNICATION & INQUIRIES
+            </div>
+
+            <h1>Get in <span class="gradient-text">Touch ✉️</span></h1>
+
+            <p>
+                Looking to build high-availability cloud pipelines or discuss software engineering? Send a message and let's start the conversation.
+            </p>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section section-container">
+            <div class="contact-grid">
+
+                <!-- CONTACT INFO DETAILS -->
+                <div class="content-card">
+                    <h2>Let's build together</h2>
+                    <p>
+                        Whether you need an automated deployment pipeline, container migration assistance, or cloud infrastructure design, feel free to reach out directly through any of the channels below.
+                    </p>
+
+                    <div class="contact-info-list">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">📧</div>
+                            <div>
+                                <div class="contact-info-label">EMAIL ADDRESS</div>
+                                <div class="contact-info-val">vividhan2007@icloud.com</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">🐙</div>
+                            <div>
+                                <div class="contact-info-label">GITHUB</div>
+                                <div class="contact-info-val">github.com/VIVIDHAN</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">📍</div>
+                            <div>
+                                <div class="contact-info-label">LOCATION</div>
+                                <div class="contact-info-val">Tamil Nadu, India</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">💼</div>
+                            <div>
+                                <div class="contact-info-label">CURRENT STATUS</div>
+                                <div class="contact-info-val" style="color: var(--green);">Open for Hire & Collaborations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACT FORM CARD -->
+                <div class="content-card">
+                    <h3>Send a Direct Message</h3>
+                    <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+
+                    <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! Your message has been noted.');">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="e.g. Alex Smith" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder="alex@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-input" placeholder="e.g. Cloud Automation Project" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Describe your project, ideas, or questions..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="button button-primary" style="width: 100%;">
+                            Send Message <span>→</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="index.html" class="brand footer-brand">
+                <span class="brand-icon">&lt;/&gt;</span>
+                <span>Vividhan<span class="brand-accent">Tech</span></span>
+            </a>
+            <p>Designed with purpose. Deployed with automation.</p>
+            <span class="copyright">© 2026 Vividhan Tech</span>
         </div>
-    </div>
-
-    <footer>
-        <p>Deployed seamlessly via GitHub Actions &copy; 2026</p>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("nav-open");
+            menuToggle.classList.toggle("menu-open", isOpen);
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("nav-open");
+                menuToggle.classList.remove("menu-open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    </script>
+
 </body>
 </html>
