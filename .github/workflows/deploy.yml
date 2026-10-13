@@ -34,24 +34,8 @@ jobs:
             
             sudo docker build -t my-live-website .
             
-            if ! sudo docker ps | grep -q traefik; then
-              sudo docker rm -f production-web traefik || true
-              sudo docker run -d -p 80:80 --name traefik -v /var/run/docker.sock:/var/run/docker.sock traefik:v3.0 --providers.docker=true
-            fi
-            
-            if sudo docker ps | grep -q website-blue; then
-              OLD="website-blue"
-              NEW="website-green"
-            else
-              OLD="website-green"
-              NEW="website-blue"
-            fi
-            
-            sudo docker run -d --name $NEW --label 'traefik.http.routers.'$NEW'.rule=PathPrefix(`/`)' --label 'traefik.http.services.'$NEW'.loadbalancer.server.port=80' my-live-website
-            
-            sleep 3
-            
-            sudo docker rm -f $OLD || true
+            sudo docker rm -f traefik website-blue website-green production-web || true
+            sudo docker run -d -p 80:80 --name production-web my-live-website
 
   # JOB 3: EMAIL NOTIFICATIONS
   notify:
