@@ -1,30 +1,418 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - DevOps Master</title>
+
+    <meta name="theme-color" content="#080d1b">
+    <meta name="description" content="Vividhan Tech — A modern DevOps deployment showcase powered by AWS EC2, Docker, GitHub Actions, and Nginx.">
+
+    <title>Vividhan Tech | DevOps & Cloud Engineering</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav>
-        <div class="logo">Vividhan Tech 🚀</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
 
-    <div class="container">
-        <h1>eyaagul</h1>
-        <p>This entire 3-page website was automatically deployed to an AWS EC2 instance using <span class="highlight">Docker</span> and <span class="highlight">GitHub Actions</span>.</p>
-        <p>No manual server configuration was required. Just a simple Git Push, and the CI/CD pipeline handled the rest!</p>
-        <p>Feel free to click around the navigation bar to see how Nginx serves multiple HTML pages effortlessly.</p>
-    </div>
+    <div class="background-glow"></div>
 
-    <footer>
-        <p>Deployed seamlessly via GitHub Actions &copy; 2026</p>
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">&lt;/&gt;</span>
+            <span>Vividhan<span class="brand-accent">Tech</span></span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <a href="#deployment" class="nav-cta">
+            Explore Deployment <span>↗</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero section-container">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    CLOUD DEPLOYMENT SHOWCASE
+                </div>
+
+                <h1>
+                    From Code<br>
+                    to <span class="gradient-text">Cloud.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Building, automating, and deploying modern web applications
+                    with reliable DevOps workflows. One Git push at a time.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#deployment" class="button button-primary">
+                        Explore My Deployment <span>→</span>
+                    </a>
+
+                    <a href="about.html" class="button button-secondary">
+                        About Me
+                    </a>
+                </div>
+
+                <div class="hero-proof">
+                    <div class="proof-item">
+                        <span class="proof-icon">✓</span>
+                        Automated CI/CD
+                    </div>
+
+                    <div class="proof-item">
+                        <span class="proof-icon">✓</span>
+                        Containerized App
+                    </div>
+
+                    <div class="proof-item">
+                        <span class="proof-icon">✓</span>
+                        Cloud Hosted
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TERMINAL CARD -->
+            <div class="terminal-card">
+
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="terminal-title">deployment.sh</span>
+
+                    <span class="terminal-label">BASH</span>
+                </div>
+
+                <div class="terminal-body">
+
+                    <div class="terminal-comment">
+                        # The journey from code to production
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span>git push origin main</span>
+                    </div>
+
+                    <div class="terminal-output">
+                        Triggering GitHub Actions workflow...
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span>docker build -t web-app .</span>
+                    </div>
+
+                    <div class="terminal-output">
+                        <span class="success-text">✓</span>
+                        Docker image build command
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span>docker run -d web-app</span>
+                    </div>
+
+                    <div class="terminal-output">
+                        Container launch command
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span>nginx -t</span>
+                    </div>
+
+                    <div class="terminal-output">
+                        <span class="success-text">✓</span>
+                        Nginx configuration test
+                    </div>
+
+                    <div class="terminal-divider"></div>
+
+                    <div class="terminal-result">
+                        <span class="result-indicator"></span>
+                        <div>
+                            <strong>Deployment workflow</strong>
+                            <p>Commands shown for demonstration</p>
+                        </div>
+                        <span class="result-tag">CI/CD</span>
+                    </div>
+
+                </div>
+
+                <div class="terminal-footer">
+                    <span>devops@vividhan</span>
+                    <span>UTF-8</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TECHNOLOGY STACK -->
+        <section class="tech-section">
+            <div class="section-container">
+
+                <p class="section-overline">POWERED BY MODERN TECHNOLOGIES</p>
+
+                <div class="tech-grid">
+
+                    <div class="tech-item">
+                        <div class="tech-icon aws-icon">aws</div>
+                        <div>
+                            <h3>AWS EC2</h3>
+                            <p>Cloud Infrastructure</p>
+                        </div>
+                    </div>
+
+                    <div class="tech-item">
+                        <div class="tech-icon docker-icon">D</div>
+                        <div>
+                            <h3>Docker</h3>
+                            <p>Containerization</p>
+                        </div>
+                    </div>
+
+                    <div class="tech-item">
+                        <div class="tech-icon github-icon">GH</div>
+                        <div>
+                            <h3>GitHub Actions</h3>
+                            <p>CI/CD Automation</p>
+                        </div>
+                    </div>
+
+                    <div class="tech-item">
+                        <div class="tech-icon nginx-icon">N</div>
+                        <div>
+                            <h3>Nginx</h3>
+                            <p>Web Server</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- DEPLOYMENT WORKFLOW -->
+        <section class="deployment-section section-container" id="deployment">
+
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">
+                        <span class="heading-marker"></span>
+                        THE WORKFLOW
+                    </div>
+
+                    <h2>From commit to <span class="gradient-text">production.</span></h2>
+
+                    <p>
+                        A simplified overview of the technologies involved
+                        in the deployment pipeline.
+                    </p>
+                </div>
+
+                <span class="workflow-badge">4 STAGES</span>
+            </div>
+
+            <div class="workflow-grid">
+
+                <article class="workflow-card">
+                    <div class="workflow-top">
+                        <span class="step-number">01</span>
+                        <span class="workflow-symbol">⌘</span>
+                    </div>
+
+                    <h3>Push Code</h3>
+
+                    <p>
+                        Commit changes and push your application
+                        code to the main GitHub branch.
+                    </p>
+
+                    <div class="workflow-bottom">
+                        <span class="mini-dot"></span>
+                        <span>Git & GitHub</span>
+                    </div>
+                </article>
+
+                <div class="workflow-connector">→</div>
+
+                <article class="workflow-card">
+                    <div class="workflow-top">
+                        <span class="step-number">02</span>
+                        <span class="workflow-symbol">⚙</span>
+                    </div>
+
+                    <h3>Automate</h3>
+
+                    <p>
+                        GitHub Actions runs the configured
+                        workflow to build and prepare the app.
+                    </p>
+
+                    <div class="workflow-bottom">
+                        <span class="mini-dot"></span>
+                        <span>GitHub Actions</span>
+                    </div>
+                </article>
+
+                <div class="workflow-connector">→</div>
+
+                <article class="workflow-card">
+                    <div class="workflow-top">
+                        <span class="step-number">03</span>
+                        <span class="workflow-symbol">▤</span>
+                    </div>
+
+                    <h3>Deploy</h3>
+
+                    <p>
+                        The workflow deploys the application
+                        to your configured AWS EC2 environment.
+                    </p>
+
+                    <div class="workflow-bottom">
+                        <span class="mini-dot"></span>
+                        <span>Docker & AWS EC2</span>
+                    </div>
+                </article>
+
+                <div class="workflow-connector">→</div>
+
+                <article class="workflow-card">
+                    <div class="workflow-top">
+                        <span class="step-number">04</span>
+                        <span class="workflow-symbol">↗</span>
+                    </div>
+
+                    <h3>Serve</h3>
+
+                    <p>
+                        Nginx serves the website pages to
+                        visitors through the configured endpoint.
+                    </p>
+
+                    <div class="workflow-bottom">
+                        <span class="mini-dot"></span>
+                        <span>Nginx</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="workflow-note">
+                <span class="note-icon">i</span>
+                <p>
+                    This diagram describes the intended workflow.
+                    Actual automation and deployment results depend on your
+                    GitHub Actions configuration and server setup.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="cta-section section-container">
+
+            <div class="cta-card">
+                <div class="cta-decoration"></div>
+
+                <div class="cta-content">
+                    <div class="eyebrow">BUILD. AUTOMATE. SCALE.</div>
+
+                    <h2>Every great deployment<br>
+                        starts with <span class="gradient-text">one commit.</span>
+                    </h2>
+
+                    <p>
+                        Explore the project, learn about the developer,
+                        or get in touch to discuss technology.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="about.html" class="button button-primary">
+                            Discover More <span>→</span>
+                        </a>
+
+                        <a href="contact.html" class="button button-secondary">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+
+            <a href="index.html" class="brand footer-brand">
+                <span class="brand-icon">&lt;/&gt;</span>
+                <span>Vividhan<span class="brand-accent">Tech</span></span>
+            </a>
+
+            <p>
+                Designed with purpose. Deployed with automation.
+            </p>
+
+            <span class="copyright">
+                © 2026 Vividhan Tech
+            </span>
+
+        </div>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("nav-open");
+
+            menuToggle.classList.toggle("menu-open", isOpen);
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("nav-open");
+                menuToggle.classList.remove("menu-open");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    </script>
+
 </body>
 </html>
